@@ -2,15 +2,8 @@
 /**
  * MiscTest
  *
- * PHP Version 5.3
- *
- * @package   Tests
- * @author    aidan lydon <alyo@loc.gov>
- * @copyright 2014 The Library of Congress
- * @license   Copyright 2014 The Library of Congress
- * @version   $Id:$
- * @link      TBD
- * @since     Sept 24, 2014
+ * Tests
+ * @author  aidan lydon <aidanlydon@gmail.com>
  */
 class MiscTest extends BaseUnitTest
 {
@@ -22,30 +15,9 @@ class MiscTest extends BaseUnitTest
      */
     public function testAllUrls()
     {
-        $root = 'http://int.local/';
+        $root = '';
 
         $urls = array(
-            'announcements',
-            'announcements/rss',
-            'disclaimer',
-            'door-closures',
-            'floor-plans',
-            'forms',
-            'intranets',
-            'link-of-the-week',
-            'link-of-the-week/suggest',
-            'link-of-the-week/submitted',
-            'maintenance',
-            'new-on-loc',
-            'news',
-            'news/rss',
-            'page/blah',
-            'page/clubs',
-            'page/labor-orgs',
-            'page/feeds',
-            'page/org-charts',
-            'page/web-policy',
-            'standard-disclaimer',
             //TODO: auth, user, admin interface
         );
 

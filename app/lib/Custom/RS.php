@@ -3,15 +3,8 @@
  * RS - iterable wrapper for phalcon pdo result set, so that I can use foreach (simpler)
  * instead of while ($resultSet->fetch)
  *
- * PHP Version 5.3
- *
- * @package   Lib
- * @author    aidan lydon <alyo@loc.gov>
- * @copyright 2014 The Library of Congress
- * @license   Copyright 2014 The Library of Congress
- * @version   $Id:$
- * @link      TBD
- * @since     Sept 24, 2014
+ * @package Lib
+ * @author  aidan lydon <aidanlydon@gmail.com>
  */
 class RS extends Base implements Iterator
 {

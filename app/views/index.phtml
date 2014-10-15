@@ -2,127 +2,24 @@
 /**
  * app/views/index.phtml - main layout file
  *
- * PHP Version 5.3
- *
- * @package   Layouts
- * @author    aidan lydon <alyo@loc.gov>
- * @copyright 2014 The Library of Congress
- * @license   Copyright 2014 The Library of Congress
- * @version   $Id:$
- * @link      TBD
- * @since     Sept 24, 2014
+ * @package Layouts
+ * @author  aidan lydon <aidanlydon@gmail.com>
  */
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-    <title>Library of Congress Staff Intranet</title>
+    <title></title>
 
     <meta http-equiv="Content-Language" content="en-us" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="Author" content="aidan lydon (alyo@loc.gov)" />
-    <meta name="keywords" content="library of congress staff intranet" />
-    <meta name="description" content="" />
-
     <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="alternate" type="application/rss+xml" title="Staff Intranet: News RSS Feed" href="/newsRSS.php?id=user_542b11b33ec84" />
-    <link rel="alternate" type="application/rss+xml" title="Staff Intranet: Announcements RSS Feed" href="/announcementsRSS.php?id=user_542b11b33ecbe" />
 
-    <link rel="stylesheet" media="all" type="text/css" href="/css/locstaff_standard.css" />
-    <link rel="stylesheet" media="print" type="text/css" href="/css/locstaff_print.css" />
+    <link rel="stylesheet" media="all" type="text/css" href="/css/style.css" />
 
     <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/Ajax.js"></script>
-    <script type="text/javascript" src="/js/general_js.js"></script>
-
-    <!-- tabber announce, news, links -->
-    <script type="text/javascript">
-        $(function () {
-            var tabContainers = $('div#box-tabber > div');
-            tabContainers.hide().filter('#third').show();
-            $('div#box-tabber ul.tabNavigation a').click(function () {
-                tabContainers.hide();
-                tabContainers.filter(this.hash).show();
-                $('div#box-tabber ul.tabNavigation a').removeClass('selected');
-                $(this).addClass('selected');
-                return false;
-            }).filter('#third');
-        });
-
-        function changeSearchIntranetClass() {
-            var intranet = document.getElementById("srch_intranet");
-            var loc = document.getElementById("srch_loc");
-            intranet.className="first selected";
-            loc.className="second";
-            document.getElementById("txtSearch").name = "qt"
-            document.forms.search_form.txtSearch = 'wt';
-            document.forms.search_form.action = 'http://search.loc.gov:8765/query.html';
-        }
-
-        function changeSearchLOCClass() {
-            var intranet = document.getElementById("srch_intranet");
-            var loc = document.getElementById("srch_loc");
-            intranet.className="first";
-            loc.className="second selected";
-            document.getElementById("txtSearch").name = "cclquery"
-            document.forms.search_form.action = 'http://www.loc.gov/fedsearch/metasearch/';
-        }
-    </script>
 </head>
 <body>
-    <div id="box-header<?php if (!empty($breadcrumbs)) { echo '-alt'; } ?>">
-        <div id="header">
-            <div class="logo-lc"><a href="http://www.loc.gov/" title="Go to the LOC Homepage"><img src="/img/logo-loc-staffintranet-p.gif" width="325" height="67" border="0" alt="Library of Congress Staff Intranet" /></a><span><a href="http://www.loc.gov/staff" title="Go to the LOC Staff Intranet Homepage">Staff Intranet Home</a></span></div>
-            <div id="box-tabsearch">
-                <ul class="tabsearch">
-                    <li id="srch_intranet" class="first selected"><a onclick="changeSearchIntranetClass();" href="#">LOC INTRANET</a></li>
-                    <li id="srch_loc" class="second"><a onclick="changeSearchLOCClass();" href="#">LOC.gov</a></li>
-                </ul>
-
-                <form name="search_form" id="search_form" action="http://search.loc.gov:8765/query.html" method="get">
-                    <label for="txtSearch">Search</label>
-                    <input class="txt" id="txtSearch" type="text" name="qt" value="" />
-                    <!-- data -->
-                    <input type="hidden" name="col" value="staff" />
-                    <input type="hidden" name="targets[]" value="webpages" />
-                    <input type="hidden" name="targets[]" value="recommend" />
-                    <!-- end data -->
-                    <input class="button" id="search_site" name="search_site" type="submit" value="GO" />
-                </form>
-            </div>
-        </div><!-- end header -->
-    </div><!-- end box-header-->
-
-    <?php if (!empty($breadcrumbs)) { ?>
-    <div id="box-crumb">
-        <div id="crumb">
-            <a href="/">Staff Intranet</a>
-            <?php foreach ($breadcrumbs as $url => $display) {
-                echo '&raquo; ';
-                if (empty($url)) {
-                    echo out($display);
-                } else {
-                    echo '<a href="' . out($url) . '">' . out($display) . '</a> ';
-                }
-            } ?>
-        </div>
-    </div>
-    <?php } ?>
-
-    <!-- Content -->
-    <div id="main" class="pos-rel">
-        <?php echo $this->getContent(); ?>
-    </div><!-- end main -->
-
-    <div id="box-footer">
-        <div id="footer">
-            <h2>Footer</h2>
-            <p style="float:right;">Reviewed: <?php echo out($data['settings']['LastReviewed']); ?></p>
-            <ul>
-                <li><a href="mailto:noreply@loc.gov">Contact Us</a></li>
-                <li class="end"><a href="/standard_disclaimer.php"><img src="/img/disclaimer.gif" alt="Disclaimer" /></a></li>
-            </ul>
-        </div><!-- end footer -->
-    </div><!-- end box-footer -->
+    <?php echo $this->getContent(); ?>
 </body>
 </html>
