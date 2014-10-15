@@ -1,0 +1,31 @@
+<?php
+/**
+ * app/views/door-closures/index.phtml
+ *
+ * PHP Version 5.3
+ *
+ * @package   Views
+ * @author    aidan lydon <alyo@loc.gov>
+ * @copyright 2014 The Library of Congress
+ * @license   Copyright 2014 The Library of Congress
+ * @version   $Id:$
+ * @link      TBD
+ * @since     Sept 24, 2014
+ */
+$this->partial('partial/head', array('head' => 'Door Closures'));
+$this->partial('partial/banner', array('banner' => $data['banner']));
+?>
+<div id="main-body">
+
+    <?php if (empty($data['closures'])) {
+        echo '<h3 class="entry-title">As of ' . date('h:i:s A') . ' there are no door closures</h3><br />';
+    } else {
+        foreach ($data['closures'] as $c) { ?>
+            <p class="entry-date gray"><?php echo out(date('l F jS Y, h:i:s A', strtotime($c->submitted))); ?></p>
+            <h3 class="entry-title"><?php echo out($c->title); ?></h3>
+            <p class="entry-content black"><?php echo out($c->description); ?></p>
+        <?php }
+    } ?>
+
+    <p><a href="#" class="top">Top</a></p>
+</div>

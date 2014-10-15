@@ -1,0 +1,27 @@
+<?php
+/**
+ * app/views/new-on-loc/index.phtml
+ *
+ * PHP Version 5.3
+ *
+ * @package   Views
+ * @author    aidan lydon <alyo@loc.gov>
+ * @copyright 2014 The Library of Congress
+ * @license   Copyright 2014 The Library of Congress
+ * @version   $Id:$
+ * @link      TBD
+ * @since     Sept 24, 2014
+ */
+$this->partial('partial/head', array('head' => 'New on LOC.Gov'));
+?>
+<div id="main-body">
+
+    <?php foreach($data['items'] as $item) { ?>
+        <h3 class="entry-title">
+            <a href="<?php echo out($item['link']); ?>"><?php echo out($item['title']); ?></a>
+        </h3>
+        <p class="entry-content"><?php echo out($item['description']); ?></p>
+    <?php } ?>
+
+    <p><a href="#" class="top">Top</a></p>
+</div>

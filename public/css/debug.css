@@ -1,0 +1,14 @@
+pre.debug {
+	font-family: Consolas, Menlo, "Courier New", monospace;
+    background: black;
+    color: white;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    
+}
+
+pre.debug p {
+	margin-top: 0px;
+}

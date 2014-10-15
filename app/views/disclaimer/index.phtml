@@ -1,0 +1,32 @@
+<?php
+/**
+ * app/views/disclaimer/index.phtml
+ *
+ * PHP Version 5.3
+ *
+ * @package   Views
+ * @author    aidan lydon <alyo@loc.gov>
+ * @copyright 2014 The Library of Congress
+ * @license   Copyright 2014 The Library of Congress
+ * @version   $Id:$
+ * @link      TBD
+ * @since     Sept 24, 2014
+ */
+
+//TODO: replace $link_external with the get url?
+
+$this->partial('partial/head', array('head' => 'Disclaimer for External Links'));
+?>
+<div id="main-body">
+    <p>You are leaving the Library of Congress. This link will take you to an external Web site.</p>
+	<p>The Library does not necessarily endorse the views expressed or the information presented on sites other than its own. Further, the Library of Congress bears on responsibility for the accuracy, legality or quality of the content on these sites or for other sites linked to them. In addition, the Library does not endorse any commercial products that may be advertised or available at the external site.</p>
+
+	<p>For more information, please read our <a href="http://www.loc.gov/homepage/legal.html">legal notices</a>.</p>
+
+	<ul class="btn-disclaimer">
+		<li><a href="javascript:history.back();">&lt; Back to previous page</a></li>
+		<li><a href="'.urldecode($link_external).'">Continue to external site &gt;</a></li>
+	</ul>
+
+    <p><a href="#" class="top">Top</a></p>
+</div>

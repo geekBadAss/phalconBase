@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+  
+
+  
+
+
+  <head>
+    <title>
+      OfficeLibrary_OrgChart (2).pdf on Ticket #164 – Attachment
+     – intranet
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="search" href="/trac/intranet/search" />
+        <link rel="help" href="/trac/intranet/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/intranet/raw-attachment/ticket/164/OfficeLibrary_OrgChart%20%282%29.pdf" type="application/pdf; charset=iso-8859-15" title="Original Format" />
+        <link rel="up" href="/trac/intranet/ticket/164" title="Ticket #164" />
+        <link rel="start" href="/trac/intranet/wiki" />
+        <link rel="stylesheet" href="/trac/intranet/chrome/common/css/trac.css" type="text/css" /><link rel="stylesheet" href="/trac/intranet/chrome/common/css/code.css" type="text/css" />
+        <link rel="shortcut icon" href="/trac/intranet/chrome/common/trac.ico" type="image/x-icon" />
+        <link rel="icon" href="/trac/intranet/chrome/common/trac.ico" type="image/x-icon" />
+      <link type="application/opensearchdescription+xml" rel="search" href="/trac/intranet/search/opensearch" title="Search intranet" />
+    <script type="text/javascript" src="/trac/intranet/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/intranet/chrome/common/js/babel.js"></script><script type="text/javascript" src="/trac/intranet/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/intranet/chrome/common/js/search.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/trac/intranet/chrome/common/js/ie_pre7_hacks.js"></script>
+    <![endif]-->
+      <script type="text/javascript" src="/trac/intranet/chrome/common/js/folding.js"></script>
+      <script type="text/javascript">
+        jQuery(document).ready(function($) {
+          $('#preview table.code').enableCollapsibleColumns($('#preview table.code thead th.content'));
+        });
+      </script>
+  </head>
+  <body>
+    <div id="banner">
+      <div id="header">
+        <a id="logo" href="/trac/intranet/"><img src="/trac_logos/intranet.png" alt="Staff Intranet" /></a>
+      </div>
+      <form id="search" action="/trac/intranet/search" method="get">
+        <div>
+          <label for="proj-search">Search:</label>
+          <input type="text" id="proj-search" name="q" size="18" value="" />
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+      <div id="metanav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/intranet/login">Login</a></li><li><a href="/trac/intranet/prefs">Preferences</a></li><li><a href="/trac/intranet/wiki/TracGuide">Help/Guide</a></li><li class="last"><a href="/trac/intranet/about">About Trac</a></li>
+    </ul>
+  </div>
+    </div>
+    <div id="mainnav" class="nav">
+    <ul>
+      <li class="first"><a href="/trac/intranet/wiki">Wiki</a></li><li><a href="/trac/intranet/timeline">Timeline</a></li><li><a href="/trac/intranet/roadmap">Roadmap</a></li><li><a href="/trac/intranet/browser">Browse Source</a></li><li><a href="/trac/intranet/report">View Tickets</a></li><li><a href="/trac/intranet/newticket">New Ticket</a></li><li class="last"><a href="/trac/intranet/search">Search</a></li>
+    </ul>
+  </div>
+    <div id="main">
+      <div id="ctxtnav" class="nav">
+        <h2>Context Navigation</h2>
+          <ul>
+              <li class="last first"><a href="/trac/intranet/ticket/164">Back to Ticket #164</a></li>
+          </ul>
+        <hr />
+      </div>
+    <div id="content" class="attachment">
+        <h1><a href="/trac/intranet/ticket/164">Ticket #164</a>: OfficeLibrary_OrgChart (2).pdf</h1>
+        <table id="info" summary="Description">
+          <tbody>
+            <tr>
+              <th scope="col">File OfficeLibrary_OrgChart (2).pdf,
+                <span title="160332 bytes">156.6 KB</span>
+                (added by mspringer, <a class="timeline" href="/trac/intranet/timeline?from=2012-03-16T10%3A26%3A53-04%3A00&amp;precision=second" title="2012-03-16T10:26:53-04:00 in Timeline">6 days</a> ago)</th>
+            </tr>
+            <tr>
+              <td class="message searchable">
+                <p>
+Office of the Librarian org chart
+</p>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div id="preview" class="searchable">
+          
+    <p>
+        <strong>HTML preview not available</strong>, since no preview renderer could handle it.
+      Try <a href="/trac/intranet/raw-attachment/ticket/164/OfficeLibrary_OrgChart%20%282%29.pdf">downloading</a> the file instead.
+    </p>
+
+        </div>
+    </div>
+    <div id="altlinks">
+      <h3>Download in other formats:</h3>
+      <ul>
+        <li class="last first">
+          <a rel="nofollow" href="/trac/intranet/raw-attachment/ticket/164/OfficeLibrary_OrgChart%20%282%29.pdf">Original Format</a>
+        </li>
+      </ul>
+    </div>
+    </div>
+    <div id="footer" lang="en" xml:lang="en"><hr />
+      <a id="tracpowered" href="http://trac.edgewall.org/"><img src="/trac/intranet/chrome/common/trac_logo_mini.png" height="30" width="107" alt="Trac Powered" /></a>
+      <p class="left">Powered by <a href="/trac/intranet/about"><strong>Trac 0.12.1</strong></a><br />
+        By <a href="http://www.edgewall.org/">Edgewall Software</a>.</p>
+      <p class="right">Visit the Trac open source project at<br /><a href="http://trac.edgewall.org/">http://trac.edgewall.org/</a></p>
+    </div>
+  </body>
+</html>

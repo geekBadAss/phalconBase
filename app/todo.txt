@@ -1,0 +1,13 @@
+acl that makes it easy to define roles for who can crud what
+
+request log viewer
+
+exception log viewer
+
+crud endpoints for base tables - create, find, update, delete
+
+unit tests for models / data models
+
+generators
+
+

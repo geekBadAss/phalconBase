@@ -1,0 +1,2 @@
+rm -rf ./coverage
+phpunit --stop-on-error --stop-on-failure --configuration ./phpunit.xml --coverage-html coverage

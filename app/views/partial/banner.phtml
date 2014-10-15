@@ -1,0 +1,25 @@
+<?php
+/**
+ * app/views/partial/banner.phtml - banner image partial view
+ *
+ * PHP Version 5.3
+ *
+ * @package   Partials
+ * @author    aidan lydon <alyo@loc.gov>
+ * @copyright 2014 The Library of Congress
+ * @license   Copyright 2014 The Library of Congress
+ * @version   $Id:$
+ * @link      TBD
+ * @since     Sept 24, 2014
+ */
+if ($banner) {
+?>
+<div id="img-holder">
+    <img src="/img/banners/<?php echo out($banner->name); ?>" height="138" width="901" border="0" alt="<?php echo out($banner->altText); ?>" />
+    <small>
+        <em>Artist:</em> <?php echo out($banner->artist); ?>
+        <em>Title:</em> <?php echo out($banner->title); ?> | <a href="<?php echo out($banner->link); ?>"><?php echo out($banner->linkText); ?></a>
+    </small>
+</div>
+<?php
+}

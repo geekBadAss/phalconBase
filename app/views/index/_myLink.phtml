@@ -1,0 +1,26 @@
+<?php
+/**
+ * app/views/index/_myLink.phtml
+ *
+ * PHP Version 5.3
+ *
+ * @package   Views
+ * @author    aidan lydon <alyo@loc.gov>
+ * @copyright 2014 The Library of Congress
+ * @license   Copyright 2014 The Library of Congress
+ * @version   $Id:$
+ * @link      TBD
+ * @since     Sept 24, 2014
+ */
+?>
+<li>
+<?php if ($link['externalLink'] == 'Y') { ?>
+    <a href="<?php echo out($link['url']); ?>" title="external link" class="external" target="_blank">
+        <?php echo out($link['shortTitle']); ?><span>(external link)</span>
+    </a>
+<?php } else { ?>
+	<a href="<?php echo out($link['url']); ?>" title="<?php echo out($link['title']); ?>">
+	    <?php echo out($link['shortTitle']); ?>
+    </a>
+<?php } ?>
+</li>
