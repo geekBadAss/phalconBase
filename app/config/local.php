@@ -8,8 +8,8 @@
 return array(
     'database' => array(
         'host'       => 'localhost',
-        'username'   => 'root',
-        'password'   => 'blah',
+        'username'   => '',
+        'password'   => '',
     ),
     'errors' => array(
         'level'   => -1,
