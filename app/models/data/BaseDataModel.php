@@ -1,6 +1,7 @@
 <?php
 /**
- * BaseDataModel
+ * BaseDataModel - provides protected functions to call from child classes for handling db
+ *  interaction and exception logging to make the child classes simpler
  *
  * @package DataModels
  * @author  aidan lydon <aidanlydon@gmail.com>
@@ -8,13 +9,14 @@
 class BaseDataModel extends Base
 {
     /**
-     * _getAll
+     * _getAll - get multiple rows
      *
      * @param string $sql   - sql statement
      * @param array  $bind  - bind variables
      * @param array  $class - class of objects to populate
      *
-     * @return false / array of $class objects / array (if $class is null)
+     * @return false / iterable RS object that hydrates $class objects when iterated (or arrays if
+     *  $class is null)
      */
     protected static function _getAll($sql, $bind = array(), $class = null)
     {
@@ -35,13 +37,13 @@ class BaseDataModel extends Base
     }
 
     /**
-     * _find
+     * _find - get one row
      *
      * @param string $sql   - sql statement
      * @param array  $bind  - bind variables
      * @param array  $class - class of object to populate
      *
-     * @return false/$class object
+     * @return false / $class object / array (if $class is null)
      */
     protected static function _find($sql, $bind = array(), $class = null)
     {
@@ -184,6 +186,32 @@ class BaseDataModel extends Base
             $db = DB::getConnection();
 
             $ret = $db->getAssoc($sql, $bind);
+
+        } catch (Exception $e) {
+            //@codeCoverageIgnoreStart
+            xlog($e);
+            //@codeCoverageIgnoreEnd
+        }
+
+        return $ret;
+    }
+
+    /**
+     * _getCol
+     *
+     * @param string $sql  - sql statement
+     * @param array  $bind - bind variables
+     *
+     * @return array
+     */
+    protected static function _getCol($sql, $bind = array())
+    {
+        $ret = false;
+
+        try {
+            $db = DB::getConnection();
+
+            $ret = $db->getCol($sql, $bind);
 
         } catch (Exception $e) {
             //@codeCoverageIgnoreStart

@@ -54,8 +54,8 @@ class DB extends Singleton
 
         } catch (Exception $e) {
             //db connection failed
-            var_dump($e);
-            die();
+            error_log($e->getMessage());
+            die('database connection failed');
         }
 
         return $this;
@@ -364,7 +364,7 @@ class DB extends Singleton
                 case 'string':
                     $sql = preg_replace(
                         $pattern,
-                        "'" . $this->db->escapeString($var) . "'",
+                        $this->db->escapeString($var),
                         $sql,
                         1
                     );

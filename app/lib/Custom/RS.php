@@ -56,7 +56,21 @@ class RS extends Base implements Iterator
     }
 
     /**
-     * current - get the current row, return value becomes the object inside the foreach
+     * key - get the current key, return value becomes the key/index inside the foreach
+     * e.g. foreach ($RS as $key => $value) {
+     *                      ^^^^
+     *
+     * @return int
+     */
+    public function key()
+    {
+        return $this->position;
+    }
+
+    /**
+     * current - get the current row, return value becomes the value inside the foreach
+     * e.g. foreach ($RS as $key => $value) {
+     *                              ^^^^^^
      *
      *  @return array/null
      */
@@ -72,16 +86,6 @@ class RS extends Base implements Iterator
     }
 
     /**
-     * key - get the current key, return value becomes the index inside the foreach
-     *
-     * @return int
-     */
-    public function key()
-    {
-        return $this->position;
-    }
-
-    /**
      * next - iterate
      *
      * @return null
@@ -93,7 +97,7 @@ class RS extends Base implements Iterator
     }
 
     /**
-     * valid - return value determines when the foreach will stop
+     * valid - return value determines when the foreach stops
      *
      * @return boolean
      */
