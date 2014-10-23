@@ -39,9 +39,9 @@ class AuthController extends BaseController
      */
     public function createUserAction()
     {
-        $this->_model = new UserModel();
+        $this->model = new UserModel();
         if ($this->request->isPost()) {
-            $userCreated = $this->_model->createUser($this->getParams());
+            $userCreated = $this->model->createUser($this->getParams());
             if ($userCreated) {
                 //TODO: redirect to where?
                 $this->redirect();
@@ -56,10 +56,10 @@ class AuthController extends BaseController
      */
     public function loginAction()
     {
-        $this->_model = new UserModel();
+        $this->model = new UserModel();
 
         if ($this->request->isPost()) {
-            $loggedIn = $this->_model->login($this->getParams());
+            $loggedIn = $this->model->login($this->getParams());
             if ($loggedIn) {
                 //redirect
                 $this->redirect(Session::getRedirectUrl());
@@ -74,8 +74,8 @@ class AuthController extends BaseController
      */
     public function logoutAction()
     {
-        $this->_model = new UserModel();
-        $this->_model->logout();
+        $this->model = new UserModel();
+        $this->model->logout();
         //if there is a referer, redirect to it (unless the referrer is a page where the user has to
         //be logged in)
         $this->redirect($this->request->getHttpReferer());

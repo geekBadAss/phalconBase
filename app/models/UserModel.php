@@ -123,7 +123,7 @@ class UserModel extends BusinessModel
             //                 )
             //             );
 
-            if (empty($this->errors)) {
+            if ($this->noErrors()) {
                 $user = User::findByUsername($params['username']);
 
                 if (!empty($user)) {
@@ -148,7 +148,7 @@ class UserModel extends BusinessModel
 
                         Session::set(
                             array(
-                                'userId'        => $user->userId,
+                                'userId'        => $user->id,
                                 'username'      => $user->username,
                                 'firstName'     => $user->firstName,
                                 'lastName'      => $user->lastName,

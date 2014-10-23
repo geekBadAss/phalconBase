@@ -1,0 +1,32 @@
+<?php
+/**
+ * app/views/auth/login.phtml
+ *
+ * PHP Version 5.3
+ *
+ * @package   Views
+ * @author    aidan lydon <alyo@loc.gov>
+ * @copyright 2014 The Library of Congress
+ * @license   Copyright 2014 The Library of Congress
+ * @version   $Id:$
+ * @link      TBD
+ * @since     Sept 24, 2014
+ */
+$this->partial('partial/head', array('head' => 'Login'));
+?>
+<div id="main-body">
+    <?php if (!empty($errors)) {
+        echo '<ul class="error-msg"><li>' . implode('</li><li>', $errors) . '</li></ul>';
+    } ?>
+
+    <form class="linksubmit" method="post">
+        <p><em>All fields required*</em></p>
+        <label for="username"><em>*</em> Username </label>
+        <input type="text" id="username" name="username" value="<?php echo out($data['user']->username); ?>" tabindex="1" />
+        <label for="password"><em>*</em> Password </label>
+		<input type="password" id="password" name="password" tabindex="2" /><br />
+		<input class="button" type="submit" value="Submit" tabindex="3" />
+	</form>
+
+    <p><a href="#" class="top">Top</a></p>
+</div>
