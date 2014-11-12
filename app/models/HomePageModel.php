@@ -5,7 +5,7 @@
  * @package BusinessModels
  * @author  aidan lydon <aidanlydon@gmail.com>
  */
-class HomePageModel extends IntranetBusinessModel
+class HomePageModel extends BusinessModel
 {
     /**
      * getData

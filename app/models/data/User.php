@@ -245,6 +245,9 @@ class User extends BaseDataModel implements DataModel
      */
     public function validatePassword($password)
     {
-        return password_verify($password, $this->hash);
+        //initially used: return password_verify($password, $this->hash);
+        //but this approach checks every character for equality to protect against timing attacks
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        return hash_equals($hash, $this->hash);
     }
 }
