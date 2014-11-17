@@ -196,11 +196,6 @@ class ExceptionLogTest extends BaseUnitTest
             'location'  => '',
         );
 
-        $tests[] = array(
-            'exception' => Item::find(1),
-            'location'  => '',
-        );
-
         $testParams = array();
         foreach ($tests as $test) {
             $testParams[] = array($test);

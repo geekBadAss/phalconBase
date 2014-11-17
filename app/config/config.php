@@ -11,7 +11,7 @@ return array(
         'host'       => '',
         'username'   => '',
         'password'   => '',
-        'dbname'     => '',
+        'dbname'     => 'Base',
         'persistent' => true,
     ),
     'errors' => array(

@@ -26,6 +26,23 @@ class UserTest extends BaseUnitTest
     public function testFind()
     {
         $user = new User(array(
+            'username'  => 'aidan',
+            'firstName' => 'aidan',
+            'lastName'  => 'lydon',
+            'email'     => 'aidanlydon@gmail.com',
+            'phone'     => 7072737789,
+            'address'   => '240 M St SW #E605',
+            'city'      => 'Washington',
+            'state'     => 'DC',
+            'zip'       => 20024,
+            'active'    => 1,
+        ));
+        $user->createHash('humboldt');
+
+        $id = $user->insert();
+
+
+        $user = new User(array(
             'username'  => 'TESTUSER',
             'firstName' => 'test first name',
             'lastName'  => 'test last name',
