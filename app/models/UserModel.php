@@ -69,7 +69,7 @@ class UserModel extends BusinessModel
                         'city'      => $params['city'],
                         'state'     => $params['state'],
                         'zip'       => $params['zip'],
-                        'active'    => 1,
+                        'active'    => 1,//TODO: activate via email confirmation
                     )
                 );
 
@@ -94,11 +94,12 @@ class UserModel extends BusinessModel
     /**
      * login
      *
-     * @param array $params
+     * @param array  $params    - request params
+     * @param string $ipAddress - ip address
      *
      * @return boolean
      */
-    public function login($params)
+    public function login($params, $ipAddress)
     {
         $ret = false;
 
@@ -113,15 +114,15 @@ class UserModel extends BusinessModel
                 $this->addError('You must provide a password.');
             }
 
-            //             $loginAttempt = new LoginAttempt(
-            //                 array(
-            //                     'username'      => $this->data['username'],
-            //                     'password'      => '',
-            //                     'status'        => 'login failed',
-            //                     'datetime'      => date('Y-m-d H:i:s'),
-            //                     'userSessionId' => 0,
-            //                 )
-            //             );
+            $loginAttempt = new LoginAttempt(
+                array(
+                    'username'      => $this->data['username'],
+                    'ipAddress'     => $ipAddress,
+                    'status'        => 'login failed',
+                    'datetime'      => date('Y-m-d H:i:s'),
+                    'userSessionId' => 0,
+                )
+            );
 
             if ($this->noErrors()) {
                 $user = User::findByUsername($params['username']);
@@ -133,18 +134,18 @@ class UserModel extends BusinessModel
 
                     if ($validPassword && $userActive) {
                         //insert a UserSession
-                        //                         $userSession = new UserSession(
-                        //                             array(
-                        //                                 'phpSessionId' => session_id(),
-                        //                                 'loginDate'    => date('Y-m-d'),
-                        //                                 'loginTime'    => date('H:i:s'),
-                        //                                 'logoutDate'   => '0000-00-00',
-                        //                                 'logoutTime'   => '00:00:00',
-                        //                                 'userState'    => 'logged in',
-                        //                                 'userId'       => 0//$user->userId,
-                        //                             )
-                        //                         );
-                        //                         $userSession->insert();
+                        $userSession = new UserSession(
+                            array(
+                                'phpSessionId' => session_id(),
+                                'loginDate'    => date('Y-m-d'),
+                                'loginTime'    => date('H:i:s'),
+                                'logoutDate'   => '0000-00-00',
+                                'logoutTime'   => '00:00:00',
+                                'userState'    => 'logged in',
+                                'userId'       => $user->id,
+                            )
+                        );
+                        $userSession->insert();
 
                         Session::set(
                             array(
@@ -158,13 +159,13 @@ class UserModel extends BusinessModel
                                 'city'          => $user->city,
                                 'state'         => $user->state,
                                 'zip'           => $user->zip,
-                                //'userSessionId' => $userSession->userSessionId,
+                                'userSessionId' => $userSession->id,
                             )
                         );
 
                         //the login attempt was successful
-                        //$loginAttempt->status = 'login successful';
-                        //$loginAttempt->userSessionId = $userSession->userSessionId;
+                        $loginAttempt->status = 'login successful';
+                        $loginAttempt->userSessionId = $userSession->id;
 
                         $ret = true;
 
@@ -174,7 +175,7 @@ class UserModel extends BusinessModel
                 }
             }
 
-            //$loginAttempt->insert();
+            $loginAttempt->insert();
 
         } catch (Exception $e) {
             //@codeCoverageIgnoreStart

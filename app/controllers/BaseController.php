@@ -24,6 +24,13 @@ class BaseController extends Controller
      */
     public function beforeExecuteRoute($dispatcher)
     {
+        //sterilize request params
+        $this->dispatcher->setParams(
+            $this->_sterilize(
+                $this->dispatcher->getParams()
+            )
+        );
+
         session_start();
 
         //TODO: don't log requests in production environments
@@ -71,8 +78,6 @@ class BaseController extends Controller
                 $this->view->breadcrumbs = $this->breadcrumbs;
             }
         }
-
-        //DB::disconnect();
     }
 
     /**
@@ -154,5 +159,60 @@ class BaseController extends Controller
     public function disableView()
     {
         $this->view->disable();
+    }
+
+    /**
+     * _sterilize
+     *
+     * @param mixed $input
+     *
+     * @return mixed
+     */
+    private function _sterilize($input)
+    {
+        if (!empty($input)) {
+            if (is_array($input)) {
+                foreach ($input as $key => &$val) {
+                    if (is_array($val)) {
+                        //recurse
+                        $val = $this->_sterilize($val);
+                    } else {
+                        $val = $this->_sterilizeSingle($val);
+                    }
+                }
+            } else {
+                $input = $this->_sterilizeSingle($input);
+            }
+        }
+
+        return $input;
+    }
+
+    /**
+     * _sterilizeSingle
+     *
+     * @param mixed $input
+     *
+     * @return mixed
+     */
+    private function _sterilizeSingle($input)
+    {
+        $ret = $input;
+
+        if (!is_object($input)) {
+            //if this is json...
+            $decoded = json_decode($input, true);
+            if (!empty($decoded) && $decoded != $input && json_last_error() == JSON_ERROR_NONE) {
+                //sterilize the decoded version
+                $decoded = $this->_sterilize($decoded);
+
+                //re-encode
+                $input = json_encode($decoded);
+            }
+
+            $ret = strip_tags($input);
+        }
+
+        return $ret;
     }
 }

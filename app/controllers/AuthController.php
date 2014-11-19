@@ -59,7 +59,7 @@ class AuthController extends BaseController
         $this->model = new UserModel();
 
         if ($this->request->isPost()) {
-            $loggedIn = $this->model->login($this->getParams());
+            $loggedIn = $this->model->login($this->getParams(), $this->request->getClientAddress());
             if ($loggedIn) {
                 //redirect
                 $this->redirect(Session::getRedirectUrl());

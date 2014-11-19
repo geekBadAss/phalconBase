@@ -192,7 +192,12 @@ class ExceptionLogTest extends BaseUnitTest
         );
 
         $tests[] = array(
-            'exception' => new Exception('this is an exception'),
+            'exception' => new Exception('this is an exception object'),
+            'location'  => '',
+        );
+
+        $tests[] = array(
+            'exception' => new User(array('username' => 'test user')),
             'location'  => '',
         );
 

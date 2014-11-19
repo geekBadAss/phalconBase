@@ -245,10 +245,13 @@ class User extends BaseDataModel implements DataModel
      */
     public function validatePassword($password)
     {
-        if (function_exists('hash_equals')) {//php 5.6
+        if (function_exists('hash_equals')) {
+            //@codeCoverageIgnoreStart
+            //php 5.6
             //this approach checks every character for equality to protect against timing attacks
             $hash = password_hash($password, PASSWORD_DEFAULT);
             return hash_equals($hash, $this->hash);
+            //@codeCoverageIgnoreEnd
         } else {
             return password_verify($password, $this->hash);
         }
