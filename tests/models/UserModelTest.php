@@ -48,7 +48,8 @@ class UserModelTest extends BaseModelTest
     public function testLogin()
     {
         $params = array();
-        $this->model->login($params);
+        $ipAddress = '127.0.0.1';
+        $this->model->login($params, $ipAddress);
     }
 
     /**
