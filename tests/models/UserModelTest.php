@@ -15,7 +15,8 @@ class UserModelTest extends BaseModelTest
     public function testCreateUser()
     {
         $params = array();
-        $this->model->createUser($params);
+        $ipAddress = '127.0.0.1';
+        $this->model->createUser($params, $ipAddress);
     }
 
     /**

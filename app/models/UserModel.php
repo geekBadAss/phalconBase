@@ -10,11 +10,12 @@ class UserModel extends BusinessModel
     /**
      * createUser
      *
-     * @param array $params
+     * @param array  $params    - request params
+     * @param string $ipAddress - ip address
      *
      * @return boolean
      */
-    public function createUser($params)
+    public function createUser($params, $ipAddress)
     {
         $ret = false;
 
@@ -73,7 +74,7 @@ class UserModel extends BusinessModel
                     )
                 );
 
-                $user->createHash($params['password']);
+                $user->createHash($params['password'], $ipAddress);
 
                 if (!$user->insert()) {
                     $this->addError('Unable to create an account.');
@@ -106,6 +107,7 @@ class UserModel extends BusinessModel
         try {
             if (!isset($params['username']) || empty($params['username'])) {
                 $this->addError('You must provide a username.');
+                $this->data['username'] = '';
             } else {
                 $this->data['username'] = $params['username'];
             }
@@ -119,7 +121,7 @@ class UserModel extends BusinessModel
                     'username'      => $this->data['username'],
                     'ipAddress'     => $ipAddress,
                     'status'        => 'login failed',
-                    'datetime'      => date('Y-m-d H:i:s'),
+                    'dateTime'      => date('Y-m-d H:i:s'),
                     'userSessionId' => 0,
                 )
             );
