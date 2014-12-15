@@ -108,6 +108,17 @@ class Profiler extends Singleton
     }
 
     /**
+     * getAllProfiles
+     *
+     * @return array
+     */
+    public static function getAllProfiles()
+    {
+        $instance = static::getInstance();
+        return $instance->profiles;
+    }
+
+    /**
      * getCount
      *
      * @param string $type - profile type
