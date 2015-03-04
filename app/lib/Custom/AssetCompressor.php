@@ -848,11 +848,7 @@ class AssetCompressor extends Singleton
         }
 
         //If this fails, check to make sure the image file exists on the external
-        //server. Two files that are referenced in the jquery-ui css do not exist
-        //on the cdn:
-        //https://cdn.loc.gov/js/lib/jquery-ui-1.10.2/css/loc-default/images/
-        //animated-overlay.gif
-        //ui-bg_flat_0_aaaaaa_40x100.png
+        //server.
 
         copy($origin, $path);
     }

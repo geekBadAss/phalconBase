@@ -10,4 +10,6 @@ unit tests for models / data models
 
 generators
 
+move lib/Custom to vendor/a1d4n or something
 
+figure out namespaces, use statements, and composer

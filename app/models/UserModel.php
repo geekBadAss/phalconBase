@@ -10,12 +10,13 @@ class UserModel extends BusinessModel
     /**
      * createUser
      *
-     * @param array  $params    - request params
-     * @param string $ipAddress - ip address
+     * @param array   $params    - request params
+     * @param string  $ipAddress - ip address
+     * @param boolean $isPost    - is this a post?
      *
      * @return boolean
      */
-    public function createUser($params, $ipAddress)
+    public function createUser($params, $ipAddress, $isPost)
     {
         $ret = false;
 
@@ -95,89 +96,92 @@ class UserModel extends BusinessModel
     /**
      * login
      *
-     * @param array  $params    - request params
-     * @param string $ipAddress - ip address
+     * @param array   $params    - request params
+     * @param string  $ipAddress - ip address
+     * @param boolean $isPost    - is this a post?
      *
      * @return boolean
      */
-    public function login($params, $ipAddress)
+    public function login($params, $ipAddress, $isPost = false)
     {
         $ret = false;
+        $this->data['username'] = '';
 
         try {
-            if (!isset($params['username']) || empty($params['username'])) {
-                $this->addError('You must provide a username.');
-                $this->data['username'] = '';
-            } else {
-                $this->data['username'] = $params['username'];
-            }
+            if ($isPost) {
+                if (!isset($params['username']) || empty($params['username'])) {
+                    $this->addError('You must provide a username.');
+                } else {
+                    $this->data['username'] = $params['username'];
+                }
 
-            if (!isset($params['password']) || empty($params['password'])) {
-                $this->addError('You must provide a password.');
-            }
+                if (!isset($params['password']) || empty($params['password'])) {
+                    $this->addError('You must provide a password.');
+                }
 
-            $loginAttempt = new LoginAttempt(
-                array(
-                    'username'      => $this->data['username'],
-                    'ipAddress'     => $ipAddress,
-                    'status'        => 'login failed',
-                    'dateTime'      => date('Y-m-d H:i:s'),
-                    'userSessionId' => 0,
-                )
-            );
+                $loginAttempt = new LoginAttempt(
+                    array(
+                        'username'      => $this->data['username'],
+                        'ipAddress'     => $ipAddress,
+                        'status'        => 'login failed',
+                        'dateTime'      => date('Y-m-d H:i:s'),
+                        'userSessionId' => 0,
+                    )
+                );
 
-            if ($this->noErrors()) {
-                $user = User::findByUsername($params['username']);
+                if ($this->noErrors()) {
+                    $user = User::findByUsername($params['username']);
 
-                if (!empty($user)) {
+                    if (!empty($user)) {
 
-                    $validPassword = $user->validatePassword($params['password']);
-                    $userActive = $user->active == 1;
+                        $validPassword = $user->validatePassword($params['password']);
+                        $userActive = $user->active == 1;
 
-                    if ($validPassword && $userActive) {
-                        //insert a UserSession
-                        $userSession = new UserSession(
-                            array(
-                                'phpSessionId' => session_id(),
-                                'loginDate'    => date('Y-m-d'),
-                                'loginTime'    => date('H:i:s'),
-                                'logoutDate'   => '0000-00-00',
-                                'logoutTime'   => '00:00:00',
-                                'userState'    => 'logged in',
-                                'userId'       => $user->id,
-                            )
-                        );
-                        $userSession->insert();
+                        if ($validPassword && $userActive) {
+                            //insert a UserSession
+                            $userSession = new UserSession(
+                                array(
+                                    'phpSessionId' => session_id(),
+                                    'loginDate'    => date('Y-m-d'),
+                                    'loginTime'    => date('H:i:s'),
+                                    'logoutDate'   => '0000-00-00',
+                                    'logoutTime'   => '00:00:00',
+                                    'userState'    => 'logged in',
+                                    'userId'       => $user->id,
+                                )
+                            );
+                            $userSession->insert();
 
-                        Session::set(
-                            array(
-                                'userId'        => $user->id,
-                                'username'      => $user->username,
-                                'firstName'     => $user->firstName,
-                                'lastName'      => $user->lastName,
-                                'email'         => $user->email,
-                                'phone'         => $user->phone,
-                                'address'       => $user->address,
-                                'city'          => $user->city,
-                                'state'         => $user->state,
-                                'zip'           => $user->zip,
-                                'userSessionId' => $userSession->id,
-                            )
-                        );
+                            Session::set(
+                                array(
+                                    'userId'        => $user->id,
+                                    'username'      => $user->username,
+                                    'firstName'     => $user->firstName,
+                                    'lastName'      => $user->lastName,
+                                    'email'         => $user->email,
+                                    'phone'         => $user->phone,
+                                    'address'       => $user->address,
+                                    'city'          => $user->city,
+                                    'state'         => $user->state,
+                                    'zip'           => $user->zip,
+                                    'userSessionId' => $userSession->id,
+                                )
+                            );
 
-                        //the login attempt was successful
-                        $loginAttempt->status = 'login successful';
-                        $loginAttempt->userSessionId = $userSession->id;
+                            //the login attempt was successful
+                            $loginAttempt->status = 'login successful';
+                            $loginAttempt->userSessionId = $userSession->id;
 
-                        $ret = true;
+                            $ret = true;
 
-                    } else {
-                        $this->addError('Invalid Username or Password.');
+                        } else {
+                            $this->addError('Invalid Username or Password.');
+                        }
                     }
                 }
-            }
 
-            $loginAttempt->insert();
+                $loginAttempt->insert();
+            }
 
         } catch (Exception $e) {
             //@codeCoverageIgnoreStart

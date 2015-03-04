@@ -57,13 +57,15 @@ class AuthController extends BaseController
     public function loginAction()
     {
         $this->model = new UserModel();
+        $loggedIn = $this->model->login(
+            $this->getParams(),
+            $this->request->getClientAddress(),
+            $this->request->isPost()
+        );
 
-        if ($this->request->isPost()) {
-            $loggedIn = $this->model->login($this->getParams(), $this->request->getClientAddress());
-            if ($loggedIn) {
-                //redirect
-                $this->redirect(Session::getRedirectUrl());
-            }
+        if ($loggedIn) {
+            //redirect
+            $this->redirect(Session::getRedirectUrl());
         }
     }
 

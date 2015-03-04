@@ -11,5 +11,21 @@ echo 'status:';
 pre($status);
 echo 'errors';
 pre($errors);
+echo 'session';
+pre($_SESSION);
 ?>
 home page
+
+<div class="truncate">
+long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text long text
+
+</div>
+
+<style>
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>
